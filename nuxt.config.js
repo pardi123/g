@@ -71,6 +71,16 @@ export default {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
         baseURL: '/',
     },
+    pwa: {
+        manifest: {
+            name: "KasirKu",
+            short_name: "KasirKu",
+            lang: "id",
+            useWebManifestExtention: false,
+            start_url: "/",
+            theme_color: "#ffffff"
+        },
+    },
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa
     pwa: {

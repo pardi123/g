@@ -192,7 +192,7 @@
                     
                        <v-card>
                            <v-card-title>
-                               <span class="h5">Tambah Produk</span>
+                               <span class="h5">Tambah Produk </span>
                            </v-card-title>
                            <v-card-text>
                                <v-row>
@@ -319,7 +319,6 @@
                             </v-text-field>
                         </v-col>
                     </v-row>
-
                     <v-data-table
                         :headers="headers"
                         :items="allProduct"
@@ -369,7 +368,7 @@ export default {
             return this.$store.state.products.errorAlert
         },
         emailUser(){
-            return this.$store.state.user
+            return JSON.parse(localStorage.getItem("users"))
         }
 
    

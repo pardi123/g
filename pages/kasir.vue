@@ -206,7 +206,7 @@ export default {
             return this.$store.state.products.allProductFalse
         },
         emailUser(){
-            return this.$store.state.user
+            return JSON.parse(localStorage.getItem("users"))
         }
         
         

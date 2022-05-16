@@ -4,36 +4,16 @@
       <v-col cols="12" lg="3" sm="6"> 
           <material-stats-card
             color="green"
-            icon= "mdi-store"
-            title= "Penjualan"
-            value= "Rp.10.000.000,00" 
-            sub-icon= "mdi-calendar"
+            icon= "mdi-book"
+            title= "Total Pendapatan"
+            value= "Rp.10.000.000" 
+            sub-icon= "mdi-book"
             sub-text = "24 hari" 
             />
 
         </v-col>
-             <v-col cols="12" lg="3" sm="6"> 
-          <material-stats-card
-            color="orange"
-            icon= "mdi-store"
-            title= "Penjualan"
-            value= "Rp.10.000.000,00" 
-            sub-icon= "mdi-calendar"
-            sub-text = "24 hari" 
-            />
-
-        </v-col>
-             <v-col cols="12" lg="3" sm="6"> 
-          <material-stats-card
-            color="red"
-            icon= "mdi-store"
-            title= "Penjualan"
-            value= "Rp.10.000.000,00" 
-            sub-icon= "mdi-calendar"
-            sub-text = "24 hari" 
-            />
-
-        </v-col>
+       
+         
              <v-col cols="12" lg="3" sm="6"> 
           <material-stats-card
             color="info"
@@ -47,8 +27,8 @@
         </v-col>
 
                     <v-col cols="12" lg="12">
-                <material-card color="orange" title="Employee Stats" text="New employees on 15th September, 2016">
-                    <v-data-table :headers="headers" :items="items" hide-default-footer />
+                <material-card color="orange" title="Produk Toko" >
+                    <v-data-table :headers="headers" :items="allProduct" hide-default-footer />
                 </material-card>
             </v-col>
     </v-row>
@@ -57,80 +37,55 @@
 </template>
 
 <script>
+import {mapActions,mapState} from 'vuex';
+
 export default {
 
   name: 'IndexPage',
     middleware: 'auth', 
+    computed: {
+         allProduct(){
+            
+            return this.$store.state.products.allProduct
+        },
+        emailUser(){
+            return JSON.parse(localStorage.getItem("users"))
+        }
+
+    },
 
   data: () => ({
-                headers: [
-                {
-                    sortable: false,
-                    text: 'ID',
-                    value: 'id',
-                },
-                {
-                    sortable: false,
-                    text: 'Name',
-                    value: 'name',
-                },
-                {
-                    sortable: false,
-                    text: 'Salary',
-                    value: 'salary',
-                    align: 'right',
-                },
-                {
-                    sortable: false,
-                    text: 'Country',
-                    value: 'country',
-                    align: 'right',
-                },
-                {
-                    sortable: false,
-                    text: 'City',
-                    value: 'city',
-                    align: 'right',
-                },
-            ],
-            items: [
-                {
-                    id: 1,
-                    name: 'Dakota Rice',
-                    country: 'Niger',
-                    city: 'Oud-Tunrhout',
-                    salary: '$35,738',
-                },
-                {
-                    id: 2,
-                    name: 'Minerva Hooper',
-                    country: 'Curaçao',
-                    city: 'Sinaai-Waas',
-                    salary: '$23,738',
-                },
-                {
-                    id: 3,
-                    name: 'Sage Rodriguez',
-                    country: 'Netherlands',
-                    city: 'Overland Park',
-                    salary: '$56,142',
-                },
-                {
-                    id: 4,
-                    name: 'Philip Chanley',
-                    country: 'Korea, South',
-                    city: 'Gloucester',
-                    salary: '$38,735',
-                },
-                {
-                    id: 5,
-                    name: 'Doris Greene',
-                    country: 'Malawi',
-                    city: 'Feldkirchen in Kārnten',
-                    salary: '$63,542',
-                },
-            ],
+               headers: [
+         
+            { text: 'Kode Barang', value: 'kodeBarang'},
+            { text: 'Nama Barang', value: 'namaBarang' },
+            { text: 'Jumlah Barang', value: 'jumlahBarang'},
+            {text: 'Harga Barang',value: 'harga_barang',sortable: false,},
+            {text: 'Satuan', value: 'satuan'},
+            {text:'Action',value: 'Action',sortable:false,},
+        ],
+          
 
-  })
+  }),
+mounted(){
+this.getProducts();
+},
+  methods: {
+        ...mapActions({
+             setlocalStorage: 'auth/setlocalStorage',
+             fecthProducts: 'products/fecthProducts',
+             
+        }),  
+        getProducts(){
+             let param = {
+                 status: false,
+                 email: this.emailUser.email,
+             }
+            this.fecthProducts(param);
+                  
+
+        },
+   
+  }
 }
 </script>

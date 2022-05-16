@@ -41,7 +41,7 @@
             <v-list nav>
                 <v-list-item to="#">
                     <v-list-item-action>
-                        <v-icon>mdi-package-up</v-icon>
+                        <v-icon>mdi-logout</v-icon>
                     </v-list-item-action>
 
                     <v-list-item-title class="font-weight-light" @click="signOut">Sign Out</v-list-item-title>
@@ -82,11 +82,7 @@ export default {
                 icon: 'mdi-cash-register',
                 text: 'Kasir',
             },
-            {
-                to: '/user-profile',
-                icon: 'mdi-account',
-                text: 'User Profile'
-            }
+
         ],
     }),
     computed: {
@@ -103,7 +99,7 @@ export default {
     methods: {
         ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
         signOut(){
-            this.$fire.auth.signOut();
+            this.$store.dispatch('auth/logout');
             window.location="/landing/login"
         }
    }

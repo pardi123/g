@@ -1,0 +1,10 @@
+query getUSer {
+  users {
+    email
+    id_user
+    nama_pemilik
+    nama_toko
+    password
+    status
+  }
+}

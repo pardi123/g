@@ -62,7 +62,7 @@ export default {
             return this.$store.state.katalog.dataLoading
         },
         emailUser(){
-            return this.$store.state.user
+            return JSON.parse(localStorage.getItem("users"))
         }
     },
     data: () => ({

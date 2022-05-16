@@ -31,8 +31,8 @@ import {mapMutations} from 'vuex';
 export default {
     data: () => ({
         links: [
-          {title: 'Home' , to: '/landing'},
-          {title: 'About' , to: '/landing/about'},
+          {title: 'Beranda' , to: '/landing'},
+          {title: 'Tentang Aplikasi' , to: '/landing/about'},
           {title: 'Daftar' , to: '/landing/register'},
           {title: 'Login' , to: '/landing/login'},
         ],

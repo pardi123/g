@@ -1,0 +1,12 @@
+mutation addUSer($email: String, $password: String,$namaPemilik: String,$namaToko: String) {
+  insert_users(objects: {nama_pemilik: $namaPemilik, nama_toko: $namaToko, password: $password, status: true, email: $email}) {
+    returning {
+      nama_pemilik
+      nama_toko
+      email
+      password
+      status
+      id_user
+    }
+  }
+}

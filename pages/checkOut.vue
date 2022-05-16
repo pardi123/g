@@ -95,14 +95,16 @@ export default {
             return total
         },
         emailUser(){
-            return this.$store.state.user
+            return JSON.parse(localStorage.getItem("users"))
         }
     },
     data: () => ({
     }),
+
     mounted(){
         this.getDataCart();  
         this.validationView()
+
     },
 
     methods : {
@@ -115,6 +117,7 @@ export default {
          
           this.fecthCart(this.emailUser.email)
         },
+
         changeRupiah(item){
             return new Intl.NumberFormat('id', { style: 'currency', currency: 'IDR' }).format(item)
 
@@ -140,13 +143,11 @@ export default {
                     email: this.emailUser.email,
                 }
                 this.addToSold(param)
-                this.$router.go(-1)
                 
             }
         },
         validationView(){
             if (this.allDataCart.length  === 0) {
-                this.$router.go(-1)
                 
             }
         }
