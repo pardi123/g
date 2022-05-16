@@ -1,0 +1,59 @@
+mutation addToCart($kode: String, $nama: String, $jumlah: Int,$harga: Int,$satuan: String,$email: String) {
+  insert_keranjang(objects: {hargaBarang: $harga, jumlahBarang: $jumlah, kodeBarang: $kode, namaBarang: $nama, satuan: $satuan, status: false,email:$email}) {
+    returning {
+    id_keranjang
+    kodeBarang
+    namaBarang
+    hargaBarang
+    jumlahBarang
+    satuan
+    status
+    }
+  }
+}
+mutation plusCart($kode: String,$jumlah: Int,$email: String) {
+  update_keranjang(where: {kodeBarang: {_eq: $kode}, email: {_eq: $email}, status: {_eq: false}}, _set: {jumlahBarang: $jumlah}) {
+    returning {
+      id_keranjang
+      kodeBarang
+      namaBarang
+      hargaBarang
+      jumlahBarang
+      satuan
+      status
+    }
+  }
+}
+mutation deleteCart($id: Int) {
+  delete_keranjang(where: {id_keranjang: {_eq: $id}}) {
+    returning {
+      id_keranjang
+      jumlahBarang
+      kodeBarang
+      namaBarang
+    }
+  }
+}
+mutation addProductSold($kode: String,$nama: String,$harga: Int,$jumlah: Int,$total: Int,$satuan: String,$date: String,$id:Int,$email: String) {
+  insert_product_sold(objects: { kodeBarang: $kode, namaBarang: $nama, hargaBarang: $harga, jumlahBarang: $jumlah, jumlahHarga: $total, satuan: $satuan, date: $date,id_keranjang: $id,email: $email}) {
+    returning {
+      id_sold
+      kodeBarang
+      namaBarang
+      hargaBarang
+      jumlahBarang
+      jumlahHarga
+      satuan
+      date
+      id_keranjang
+      email
+    }
+  }
+}
+mutation changeStatus($id: Int) {
+  update_keranjang(where: {id_keranjang: {_eq: $id}}, _set: {status: true}) {
+    returning {
+      id_keranjang
+    }
+  }
+}

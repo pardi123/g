@@ -1,0 +1,17 @@
+query Products($status: Boolean,$email: String) {
+    products(where: {status: {_eq: $status}, _and: {email: {_eq: $email}}}){
+    id_data
+    jumlahBarang
+    kodeBarang
+    namaBarang
+    hargaBarang
+    satuan
+    status
+    email
+  }
+}
+query selectProduct($kode: String,$email : String) {
+  products(where: {kodeBarang: {_eq: $kode}, _and: {email: {_eq: $email}}}) {
+    id_data
+  }
+}

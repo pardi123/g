@@ -1,0 +1,26 @@
+query getkatalog($date: String,$email: String) {
+  product_sold(where: {date: {_eq: $date},email: {_eq: $email}}) {
+    id_sold
+    id_keranjang
+    kodeBarang
+    namaBarang
+    hargaBarang
+    jumlahBarang
+    jumlahHarga
+    satuan
+    date
+  }
+}
+query getKatalogDate($date1: String, $date2: String,$email: String) {
+  product_sold(where: {_and: {date: {_gte: $date1, _lte: $date2}}, email: {_eq: $email}}) {
+    hargaBarang
+    id_keranjang
+    id_sold
+    jumlahBarang
+    jumlahHarga
+    kodeBarang
+    namaBarang
+    satuan
+    date
+  }
+}
