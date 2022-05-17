@@ -18,7 +18,7 @@
           <material-stats-card
             color="info"
             icon= "mdi-store"
-            title= "Penjualan"
+            title= "Penjualan Bulan ini"
             value= "Rp.10.000.000,00" 
             sub-icon= "mdi-calendar"
             sub-text = "24 hari" 
